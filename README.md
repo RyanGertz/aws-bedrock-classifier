@@ -21,9 +21,7 @@ For a complete walkthrough of this project, check out my video explanation:
 ## What You'll Learn
 
 - **Query Classification**: Automatically categorizing user inputs based on complexity
-- **Prompt Engineering**: Crafting effective prompts for AI models
-- **AWS Bedrock Claude**: Using Anthropic's Claude model for text classification
-- **Natural Language Processing**: Understanding how AI interprets human language
+- **AWS Bedrock**: Using LLMs via the AWS service, Bedrock
 
 ## What This Code Does
 
@@ -63,24 +61,20 @@ pip install boto3
 
 **Prompt Engineering**: The practice of crafting effective instructions for AI models to get the desired output format and accuracy.
 
-**Anthropic Claude**: A state-of-the-art language model known for its strong reasoning and classification capabilities.
-
 ### The Functions Explained
 
 #### Function 1: `classify_query(user_query: str)`
 This function sends a query to Claude for classification:
 - Takes a user query string as input
-- Constructs a detailed prompt with examples and instructions
+- Constructs a detailed prompt with examples and instructions containing the user query
 - Sends the prompt to Claude via AWS Bedrock
 - Returns either "simple" or "complex" based on the model's analysis
-- Uses Claude 3 Haiku for fast, cost-effective classification
 
 #### Function 2: `main()`
 This is the main function that demonstrates the classification system:
 - Defines test queries of varying complexity
 - Calls the classification function for each query
 - Displays the results in a formatted output
-- Helps you understand how the system works
 
 ## How to Run the Code
 
@@ -131,14 +125,6 @@ User query: "{user_query}"
 
 Classification (respond with only "technical" or "general"):
 """
-```
-
-### Save Results to File
-Add file output functionality:
-```python
-def save_results(results):
-    with open('classification_results.json', 'w') as f:
-        json.dump(results, f, indent=2)
 ```
 
 ## Understanding the Output
@@ -202,7 +188,6 @@ You're making requests too quickly:
 
 - **Cost Awareness**: Each classification request costs money (usually fractions of a cent per request)
 - **Rate Limits**: AWS has limits on how many requests you can make per minute
-- **Model Selection**: Claude 3 Haiku is used for speed and cost-effectiveness
 - **Prompt Quality**: Better prompts lead to more accurate classifications
 
 ## Use Cases for Query Classification
@@ -231,21 +216,12 @@ After running the code, you might see classifications like:
 - "What color is the sky?" → "simple" (straightforward factual question)
 - "Write a marketing strategy" → "complex" (multi-step creative task)
 
-## Extending the Project
-
-Ideas for making this project more advanced:
-- **Multi-category Classification**: Classify into more than two categories
-- **Confidence Scores**: Get probability scores for classifications
-- **Batch Processing**: Process multiple queries at once
-- **Custom Training**: Fine-tune the classification for specific domains
-- **Integration**: Connect to a web interface or chatbot
 
 ## Resources for Further Learning
 
 - [AWS Bedrock Documentation](https://docs.aws.amazon.com/bedrock/)
 - [Anthropic Claude Documentation](https://docs.anthropic.com/)
 - [Prompt Engineering Guide](https://www.promptingguide.ai/)
-- [Natural Language Processing Basics](https://www.ibm.com/topics/natural-language-processing)
 - [Text Classification Overview](https://developers.google.com/machine-learning/guides/text-classification)
 - [boto3 Documentation](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html)
 - [Query Understanding in Search](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html)
