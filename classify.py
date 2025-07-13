@@ -1,8 +1,10 @@
 import boto3
+import time
 import json
 
-def classify_query(user_query: str):
-  bedrock = boto3.client('bedrock-runtime', region_name='us-west-2')
+def classify_query(user_query: str, retries: int = 0) -> str:
+  client = boto3.client('bedrock-runtime', region_name='us-west-2')
+  modelId='anthropic.claude-3-haiku-20240307-v1:0'
   
   prompt = f"""
   You are a query classifier. Your job is to classify user queries as either "simple" or "complex".
@@ -22,7 +24,7 @@ def classify_query(user_query: str):
   Classification (respond with only "simple" or "complex"):
   """
   
-  request_body = {
+  body = {
     "anthropic_version": "bedrock-2023-05-31",
     "messages": [
       {
@@ -33,16 +35,20 @@ def classify_query(user_query: str):
     "max_tokens": 10
   }
   
-  response = bedrock.invoke_model(
-    modelId='anthropic.claude-3-haiku-20240307-v1:0',
-    body=json.dumps(request_body),
-    contentType='application/json'
-  )
-
-  response_body = json.loads(response['body'].read())
-  classification = response_body['content'][0]['text'].strip().lower()
+  try:
+    response = client.invoke_model(modelId=modelId, body=json.dumps(body))
+    response_body = json.loads(response["body"].read())
+    return response_body['content'][0]['text'].strip().lower()
   
-  return classification
+  except Exception as e:
+    if "(ThrottlingException)" in str(e) and retries < 3:
+      time.sleep((retries + 1) * 8)
+      return classify_query(
+          user_query,
+          retries + 1,
+        )
+    print(e)
+    exit(1)
 
 def main() -> None:
   test_queries = [
