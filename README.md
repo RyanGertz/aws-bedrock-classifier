@@ -220,11 +220,9 @@ After running the code, you might see classifications like:
 ## Resources for Further Learning
 
 - [AWS Bedrock Documentation](https://docs.aws.amazon.com/bedrock/)
-- [Anthropic Claude Documentation](https://docs.anthropic.com/)
 - [Prompt Engineering Guide](https://www.promptingguide.ai/)
 - [Text Classification Overview](https://developers.google.com/machine-learning/guides/text-classification)
 - [boto3 Documentation](https://boto3.amazonaws.com/v1/documentation/api/latest/index.html)
-- [Query Understanding in Search](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html)
 
 ---
 
