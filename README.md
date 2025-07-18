@@ -16,7 +16,7 @@ Feel free to reach out if you have questions about:
 ## Video Tutorial
 
 For a complete walkthrough of this project, check out my video explanation:
-[AI Summer Camp Tutorial - Query Classification with AWS Bedrock](https://drive.google.com/file/d/1L0xaXiEZtAuLccpL0L2K7PkZeh4dQp3m/view?usp=sharing)
+[AI Summer Camp Tutorial - Query Classification with AWS Bedrock](https://drive.google.com/file/d/11QMZxRHzoS0YjdmFFbR3yg58rJ3xmlzu/view?usp=sharing)
 
 ## What You'll Learn
 
